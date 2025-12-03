@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HARMONI Lab | Deciphering the Female Brain</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+    </style>
+
+    <!-- Import Map for React modules -->
+    <script type="importmap">
+        {
+            "imports": {
+                "react": "https://esm.sh/react@18.2.0",
+                "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+                "lucide-react": "https://esm.sh/lucide-react@0.263.1"
+            }
+        }
+    </script>
+
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-white text-slate-900">
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+        import React, { useState, useEffect } from 'react';
+        import { createRoot } from 'react-dom/client';
+        import { Brain, Dna, Activity, Lock, ChevronRight, Menu, X, Mail, MapPin, Database, Network, ArrowRight, Cpu, Clock, UserPlus, MessageSquare, ShieldAlert } from 'lucide-react';
+
+        const Navigation = () => {
+            const [isOpen, setIsOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    setScrolled(window.scrollY > 20);
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const navLinks = [
+                { name: 'Mission', href: '#mission' },
+                { name: 'Research', href: '#research' },
+                { name: 'Initiatives', href: '#initiatives' },
+                { name: 'Contributors', href: '#team' },
+                { name: 'Contact', href: '#contact' },
+            ];
+
+            return (
+                <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="flex justify-between items-center">
+                            <div className="flex items-center">
+                                <span className={`text-2xl font-bold tracking-tighter ${scrolled ? 'text-slate-800' : 'text-slate-900'}`}>
+                                    HARMONI <span className="text-violet-600">Lab</span>
+                                </span>
+                            </div>
+                            
+                            <div className="hidden md:flex space-x-8">
+                                {navLinks.map((link) => (
+                                    <a
+                                        key={link.name}
+                                        href={link.href}
+                                        className={`text-sm font-medium hover:text-violet-600 transition-colors ${scrolled ? 'text-slate-600' : 'text-slate-800'}`}
+                                    >
+                                        {link.name}
+                                    </a>
+                                ))}
+                            </div>
+
+                            <div className="md:hidden">
+                                <button onClick={() => setIsOpen(!isOpen)} className="text-slate-600 hover:text-slate-900">
+                                    {isOpen ? <X size={24} /> : <Menu size={24} />}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Mobile Menu */}
+                    {isOpen && (
+                        <div className="md:hidden bg-white shadow-xl absolute w-full">
+                            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                                {navLinks.map((link) => (
+                                    <a
+                                        key={link.name}
+                                        href={link.href}
+                                        onClick={() => setIsOpen(false)}
+                                        className="block px-3 py-2 text-base font-medium text-slate-700 hover:text-violet-600 hover:bg-slate-50"
+                                    >
+                                        {link.name}
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </nav>
+            );
+        };
+
+        const Hero = () => {
+            return (
+                <div className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50">
+                    <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-violet-100 opacity-50 blur-3xl"></div>
+                    <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blue-100 opacity-50 blur-3xl"></div>
+                    
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div className="text-center max-w-4xl mx-auto">
+                            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight mb-6">
+                                Deciphering the <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-blue-600">Female Brain</span> through AI
+                            </h1>
+                            <p className="text-xl text-slate-600 mb-8 leading-relaxed">
+                                HARMONI (Hormonal And Reproductive Modulation Of Neurocognition Initiative) explores the impact of hormonal changes on brain and behavior within neurology, psychiatry, and psychology.
+                            </p>
+                            <div className="flex flex-col sm:flex-row justify-center gap-4">
+                                <a href="#research" className="px-8 py-3 bg-violet-600 text-white font-semibold rounded-lg hover:bg-violet-700 transition-colors shadow-lg shadow-violet-200">
+                                    Our Research
+                                </a>
+                                <a href="#initiatives" className="px-8 py-3 bg-white text-slate-700 font-semibold rounded-lg border border-slate-200 hover:border-violet-300 hover:text-violet-600 transition-all flex items-center justify-center gap-2">
+                                    View Initiatives <ArrowRight size={16} />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Mission = () => {
+            return (
+                <div id="mission" className="py-20 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid md:grid-cols-2 gap-16 items-center">
+                            <div>
+                                <h2 className="text-sm font-bold text-violet-600 uppercase tracking-wide mb-2">Our Scientific Premise</h2>
+                                <h3 className="text-3xl font-bold text-slate-900 mb-6">Beyond Hormonal Levels</h3>
+                                <p className="text-slate-600 mb-6 leading-relaxed">
+                                    Female-specific mood disorders are not simply caused by a lack of hormones, but rather by an individual's unique neurobiological sensitivity to hormonal changes.
+                                </p>
+                                <p className="text-slate-600 mb-6 leading-relaxed">
+                                    This sensitivity is mediated by a complex interplay of neurobiological pathways, including key neurotransmitter systems, the HPA axis, and neuroinflammation. We employ a multi-modal, data-driven approach to unravel this intricate landscape.
+                                </p>
+                                <div className="bg-slate-50 border-l-4 border-violet-500 p-6 rounded-r-lg">
+                                    <p className="italic text-slate-700">
+                                        "We are moving from a one-size-fits-all approach to highly targeted, individualized care for women's mental health."
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div className="space-y-2">
+                                {[
+                                    { 
+                                        icon: <Brain className="text-violet-600 h-6 w-6" />, 
+                                        title: "Neuroimaging", 
+                                        desc: "Functional and structural connectivity analysis.",
+                                        bg: "bg-violet-50"
+                                    },
+                                    { 
+                                        icon: <Dna className="text-blue-600 h-6 w-6" />, 
+                                        title: "Genomics", 
+                                        desc: "Genetic and epigenetic marker identification.",
+                                        bg: "bg-blue-50"
+                                    },
+                                    { 
+                                        icon: <Network className="text-pink-600 h-6 w-6" />, 
+                                        title: "AI Modeling", 
+                                        desc: "Predictive frameworks for risk stratification.",
+                                        bg: "bg-pink-50"
+                                    },
+                                    { 
+                                        icon: <Activity className="text-emerald-600 h-6 w-6" />, 
+                                        title: "Clinical Data", 
+                                        desc: "Longitudinal health records and hormonal profiles.",
+                                        bg: "bg-emerald-50"
+                                    }
+                                ].map((item, idx) => (
+                                    <div key={idx} className="flex items-center gap-6 p-4 rounded-xl hover:bg-slate-50 transition-colors group">
+                                        <div className={`${item.bg} p-4 rounded-full flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                                            {item.icon}
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-slate-900 text-lg">{item.title}</h4>
+                                            <p className="text-slate-600">{item.desc}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Research = () => {
+            const objectives = [
+                {
+                    title: "Neurobiological Mechanisms",
+                    description: "Explaining the mechanisms underlying perimenopausal depression and anxiety through integrated multi-modal data analysis of brain structure and function.",
+                    icon: <Brain className="w-6 h-6 text-white" />,
+                    color: "bg-violet-600"
+                },
+                {
+                    title: "Genetic & Epigenetic Factors",
+                    description: "Identifying variants and modifications related to neurotransmitter systems (serotonin, GABA) that modulate the brain's response to hormonal changes.",
+                    icon: <Dna className="w-6 h-6 text-white" />,
+                    color: "bg-blue-600"
+                },
+                {
+                    title: "Predictive AI Framework",
+                    description: "Developing models that integrate genetic, hormonal, and neuroimaging data to accurately predict individual risk and enable personalized intervention.",
+                    icon: <Database className="w-6 h-6 text-white" />,
+                    color: "bg-slate-800"
+                }
+            ];
+
+            return (
+                <div id="research" className="py-20 bg-slate-50">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl font-bold text-slate-900">Research Objectives</h2>
+                            <p className="mt-4 text-slate-600 max-w-2xl mx-auto">
+                                Our work focuses on three core pillars to transform the understanding of women's neurocognition.
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {objectives.map((obj, index) => (
+                                <div key={index} className="bg-white rounded-xl shadow-sm p-8 hover:shadow-lg transition-all duration-300 border border-slate-100 group">
+                                    <div className={`${obj.color} w-12 h-12 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                                        {obj.icon}
+                                    </div>
+                                    <h3 className="text-xl font-bold text-slate-900 mb-3">{obj.title}</h3>
+                                    <p className="text-slate-600 leading-relaxed">
+                                        {obj.description}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Initiatives = () => {
+            return (
+                <div id="initiatives" className="py-24 bg-slate-900 text-white relative overflow-hidden">
+                    {/* Abstract background elements */}
+                    <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-violet-900/10 to-transparent"></div>
+                    
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div className="mb-12">
+                            <h2 className="text-3xl font-bold mb-4">Current Initiatives</h2>
+                            <p className="text-slate-400 max-w-2xl">
+                                HARMONI Lab builds tools and frameworks to support the next generation of women's health research.
+                            </p>
+                        </div>
+
+                        <div className="grid lg:grid-cols-2 gap-8">
+                            {/* LUCIA Card - Featured */}
+                            <div className="lg:col-span-2 bg-slate-800 rounded-2xl p-8 border border-slate-700 shadow-xl relative overflow-hidden group hover:border-violet-500/50 transition-all">
+                                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                                    <MessageSquare size={120} />
+                                </div>
+                                
+                                <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start">
+                                    <div className="flex-1">
+                                        <div className="px-3 py-1 inline-block bg-violet-500/20 border border-violet-500/50 rounded-full text-violet-300 text-xs font-semibold tracking-wider uppercase mb-3">
+                                            Flagship Project
+                                        </div>
+                                        <h3 className="text-3xl font-bold text-white mb-2">LUCIA</h3>
+                                        <p className="text-violet-400 font-mono text-sm mb-4">Bias-Aware AI Agent</p>
+                                        
+                                        <p className="text-slate-300 mb-6 leading-relaxed max-w-2xl">
+                                            A dual-agent platform closing the gender diagnostic gap. LUCIA acts as an intelligent "digital scribe" for clinicians while simultaneously running a bias audit to flag "diagnostic shadowing" (attributing physical symptoms to mental health). It treats women's symptoms as evidence, not complaints.
+                                        </p>
+
+                                        <div className="flex items-center text-sm font-semibold text-white group-hover:text-violet-300 transition-colors cursor-pointer">
+                                            View LUCIA on GitHub <ChevronRight size={16} className="ml-1" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Synapse-AI */}
+                            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 hover:bg-slate-800 hover:border-blue-500/30 transition-all group">
+                                <div className="flex justify-between items-start mb-6">
+                                    <div>
+                                        <div className="px-3 py-1 inline-block bg-blue-500/10 border border-blue-500/30 rounded-full text-blue-300 text-xs font-semibold tracking-wider uppercase mb-3">
+                                            Research Phase
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">Synapse-AI</h3>
+                                        <p className="text-slate-500 font-mono text-sm">Predictive Risk Modeling</p>
+                                    </div>
+                                    <Cpu className="text-slate-600 group-hover:text-blue-500 transition-colors" size={32} />
+                                </div>
+                                <p className="text-slate-400 mb-6 leading-relaxed">
+                                    A multi-modal deep learning framework integrating fMRI tensors with polygenic risk scores to detect early biomarkers of perimenopausal depression before symptom onset.
+                                </p>
+                            </div>
+
+                            {/* Ovarian-Brain Atlas */}
+                            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 hover:bg-slate-800 hover:border-pink-500/30 transition-all group">
+                                <div className="flex justify-between items-start mb-6">
+                                    <div>
+                                        <div className="px-3 py-1 inline-block bg-pink-500/10 border border-pink-500/30 rounded-full text-pink-300 text-xs font-semibold tracking-wider uppercase mb-3">
+                                            In Development
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">Ovarian-Brain Atlas</h3>
+                                        <p className="text-slate-500 font-mono text-sm">Longitudinal Mapping</p>
+                                    </div>
+                                    <Brain className="text-slate-600 group-hover:text-pink-500 transition-colors" size={32} />
+                                </div>
+                                <p className="text-slate-400 mb-6 leading-relaxed">
+                                    Mapping structural brain changes throughout the menstrual cycle using high-frequency MRI data combined with daily hormonal panels to create a baseline for "healthy" neuro-endocrine flux.
+                                </p>
+                            </div>
+
+                            {/* Project Chronos */}
+                            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 hover:bg-slate-800 hover:border-emerald-500/30 transition-all group">
+                                <div className="flex justify-between items-start mb-6">
+                                    <div>
+                                        <div className="px-3 py-1 inline-block bg-emerald-500/10 border border-emerald-500/30 rounded-full text-emerald-300 text-xs font-semibold tracking-wider uppercase mb-3">
+                                            Concept
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">Project Chronos</h3>
+                                        <p className="text-slate-500 font-mono text-sm">Epigenetic Aging</p>
+                                    </div>
+                                    <Clock className="text-slate-600 group-hover:text-emerald-500 transition-colors" size={32} />
+                                </div>
+                                <p className="text-slate-400 mb-6 leading-relaxed">
+                                    Investigating the correlation between HPA-axis dysregulation and epigenetic aging markers during the menopausal transition to identify modifiable lifestyle factors.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Team = () => {
+            const contributors = [
+                {
+                    name: "Inna Campo, PhD",
+                    role: "Principal Investigator",
+                    initials: "IC",
+                    bio: "Specializing in HPC, applied ML, and computational biology. Leading HARMONI's mission to bridge AI and women's health.",
+                    tags: ["Computational Biology", "AI/ML", "Public Health"]
+                },
+                {
+                    name: "Sarah Chen",
+                    role: "Data Scientist (Volunteer)",
+                    initials: "SC",
+                    bio: "Expert in neuroimaging data processing and deep learning architectures for medical image analysis.",
+                    tags: ["Neuroimaging", "Python"]
+                },
+                {
+                    name: "Marcus Johnson",
+                    role: "Research Coordinator",
+                    initials: "MJ",
+                    bio: "Managing longitudinal study protocols, patient engagement strategies, and ethical compliance.",
+                    tags: ["Clinical Trials", "Ethics"]
+                },
+                {
+                    name: "Elena Rodriguez",
+                    role: "Frontend Engineer (Volunteer)",
+                    initials: "ER",
+                    bio: "Building accessible and secure user interfaces for the LUCIA platform and data dashboards.",
+                    tags: ["React", "UI/UX"]
+                }
+            ];
+
+            return (
+                <div id="team" className="py-20 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl font-bold text-slate-900">Contributors</h2>
+                            <p className="mt-4 text-slate-600 max-w-2xl mx-auto">
+                                HARMONI Lab is driven by a collaborative community of scientists, engineers, and volunteers.
+                            </p>
+                        </div>
+                        
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {contributors.map((member, index) => (
+                                <div key={index} className="bg-slate-50 rounded-2xl p-8 shadow-sm flex flex-col sm:flex-row items-center sm:items-start gap-6 hover:shadow-md transition-shadow border border-transparent hover:border-violet-100">
+                                    <div className={`w-16 h-16 rounded-full flex-shrink-0 flex items-center justify-center text-xl font-bold ${index === 0 ? 'bg-violet-100 text-violet-600' : 'bg-slate-200 text-slate-500'}`}>
+                                        {member.initials}
+                                    </div>
+                                    <div className="text-center sm:text-left">
+                                        <h3 className="text-lg font-bold text-slate-900">{member.name}</h3>
+                                        <p className="text-violet-600 font-medium mb-3 text-sm">{member.role}</p>
+                                        <p className="text-slate-600 mb-4 text-sm leading-relaxed">
+                                            {member.bio}
+                                        </p>
+                                        <div className="flex flex-wrap justify-center sm:justify-start gap-2">
+                                            {member.tags.map(tag => (
+                                                <span key={tag} className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-white border border-slate-200 text-slate-600">
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                            
+                            {/* Join Us Card */}
+                            <div className="col-span-1 md:col-span-2 mt-4 bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between hover:border-violet-400 hover:bg-violet-50/50 transition-all cursor-pointer group gap-6">
+                                <div className="flex items-center gap-6">
+                                    <div className="w-16 h-16 bg-white border-2 border-slate-200 text-slate-400 rounded-full flex items-center justify-center group-hover:border-violet-400 group-hover:text-violet-500 transition-colors">
+                                        <UserPlus size={28} />
+                                    </div>
+                                    <div className="text-center md:text-left">
+                                        <h3 className="text-lg font-bold text-slate-900 group-hover:text-violet-700 transition-colors">Join the Mission</h3>
+                                        <p className="text-slate-500 text-sm mt-1">We are actively looking for volunteers in Machine Learning, Neuroscience, and Grant Writing.</p>
+                                    </div>
+                                </div>
+                                <button className="px-6 py-2 bg-white border border-slate-300 rounded-lg text-slate-700 font-medium text-sm group-hover:bg-violet-600 group-hover:text-white group-hover:border-transparent transition-all shadow-sm">
+                                    Apply to Volunteer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Footer = () => {
+            return (
+                <footer id="contact" className="bg-slate-50 border-t border-slate-200 pt-16 pb-8">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid md:grid-cols-4 gap-8 mb-12">
+                            <div className="col-span-1 md:col-span-2">
+                                <span className="text-xl font-bold text-slate-900">
+                                    HARMONI <span className="text-violet-600">Lab</span>
+                                </span>
+                                <p className="mt-4 text-slate-500 max-w-sm">
+                                    An AI-driven project exploring the impact of hormonal changes on female brain and behavior.
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <h4 className="font-bold text-slate-900 mb-4">Contact</h4>
+                                <ul className="space-y-3 text-sm text-slate-600">
+                                    <li className="flex items-center gap-2">
+                                        <Mail size={16} />
+                                        <a href="mailto:inna.campo@gmail.com" className="hover:text-violet-600">inna.campo@gmail.com</a>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <MapPin size={16} />
+                                        <span>Atlanta, GA, USA</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 className="font-bold text-slate-900 mb-4">Links</h4>
+                                <ul className="space-y-2 text-sm text-slate-600">
+                                    <li><a href="#mission" className="hover:text-violet-600">Mission</a></li>
+                                    <li><a href="#research" className="hover:text-violet-600">Research</a></li>
+                                    <li><a href="#initiatives" className="hover:text-violet-600">Initiatives</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-400">
+                            <p>&copy; {new Date().getFullYear()} HARMONI Lab. All rights reserved.</p>
+                        </div>
+                    </div>
+                </footer>
+            );
+        };
+
+        const App = () => {
+            return (
+                <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-violet-100 selection:text-violet-900">
+                    <Navigation />
+                    <Hero />
+                    <Mission />
+                    <Research />
+                    <Initiatives />
+                    <Team />
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
