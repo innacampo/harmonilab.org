@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HARMONI Lab | Deciphering the Female Brain</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -17,7 +15,6 @@
         html { scroll-behavior: smooth; }
     </style>
 
-    <!-- Import Map for React modules -->
     <script type="importmap">
         {
             "imports": {
@@ -28,7 +25,6 @@
         }
     </script>
 
-    <!-- Babel for JSX -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body class="bg-white text-slate-900">
@@ -37,7 +33,7 @@
     <script type="text/babel" data-type="module">
         import React, { useState, useEffect } from 'react';
         import { createRoot } from 'react-dom/client';
-        import { Brain, Dna, Activity, Lock, ChevronRight, Menu, X, Mail, MapPin, Database, Network, ArrowRight, Cpu, Clock, UserPlus, MessageSquare, ShieldAlert } from 'lucide-react';
+        import { Brain, Dna, Activity, Lock, ChevronRight, Menu, X, Mail, MapPin, Database, Network, ArrowRight, Cpu, Clock, UserPlus, MessageSquare, ShieldAlert, Layers, HeartPulse } from 'lucide-react';
 
         const Navigation = () => {
             const [isOpen, setIsOpen] = useState(false);
@@ -147,7 +143,7 @@
                                 <h2 className="text-sm font-bold text-violet-600 uppercase tracking-wide mb-2">Our Scientific Premise</h2>
                                 <h3 className="text-3xl font-bold text-slate-900 mb-6">Beyond Hormonal Levels</h3>
                                 <p className="text-slate-600 mb-6 leading-relaxed">
-                                    Female-specific mood disorders are not simply caused by a lack of hormones, but rather by an individual's unique neurobiological sensitivity to hormonal changes.
+                                    Female-specific mood disorders are not simply caused by absolute hormone levels, but rather by an individual's unique neurobiological sensitivity to hormonal changes.
                                 </p>
                                 <p className="text-slate-600 mb-6 leading-relaxed">
                                     This sensitivity is mediated by a complex interplay of neurobiological pathways, including key neurotransmitter systems, the HPA axis, and neuroinflammation. We employ a multi-modal, data-driven approach to unravel this intricate landscape.
@@ -268,79 +264,79 @@
                         </div>
 
                         <div className="grid lg:grid-cols-2 gap-8">
-                            {/* LUCIA Card - Featured */}
+                            {/* LUCIA Card - Flagship */}
                             <div className="lg:col-span-2 bg-slate-800 rounded-2xl p-8 border border-slate-700 shadow-xl relative overflow-hidden group hover:border-violet-500/50 transition-all">
                                 <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                                    <MessageSquare size={120} />
+                                    <ShieldAlert size={120} />
                                 </div>
                                 
                                 <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start">
                                     <div className="flex-1">
                                         <div className="px-3 py-1 inline-block bg-violet-500/20 border border-violet-500/50 rounded-full text-violet-300 text-xs font-semibold tracking-wider uppercase mb-3">
-                                            Flagship Project
+                                            Flagship
                                         </div>
                                         <h3 className="text-3xl font-bold text-white mb-2">LUCIA</h3>
-                                        <p className="text-violet-400 font-mono text-sm mb-4">Bias-Aware AI Agent</p>
+                                        <p className="text-violet-400 font-mono text-sm mb-4">Bias-Aware Clinical Agent</p>
                                         
                                         <p className="text-slate-300 mb-6 leading-relaxed max-w-2xl">
                                             A dual-agent platform closing the gender diagnostic gap. LUCIA acts as an intelligent "digital scribe" for clinicians while simultaneously running a bias audit to flag "diagnostic shadowing" (attributing physical symptoms to mental health). It treats women's symptoms as evidence, not complaints.
                                         </p>
 
                                         <div className="flex items-center text-sm font-semibold text-white group-hover:text-violet-300 transition-colors cursor-pointer">
-                                            View LUCIA on GitHub <ChevronRight size={16} className="ml-1" />
+                                            View LUCIA Docs <ChevronRight size={16} className="ml-1" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            {/* Synapse-AI */}
+                            {/* CLARA */}
                             <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 hover:bg-slate-800 hover:border-blue-500/30 transition-all group">
                                 <div className="flex justify-between items-start mb-6">
                                     <div>
                                         <div className="px-3 py-1 inline-block bg-blue-500/10 border border-blue-500/30 rounded-full text-blue-300 text-xs font-semibold tracking-wider uppercase mb-3">
-                                            Research Phase
+                                            Intake
                                         </div>
-                                        <h3 className="text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">Synapse-AI</h3>
-                                        <p className="text-slate-500 font-mono text-sm">Predictive Risk Modeling</p>
+                                        <h3 className="text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">CLARA</h3>
+                                        <p className="text-slate-500 font-mono text-sm">Contextual Learning & Reasoning</p>
                                     </div>
-                                    <Cpu className="text-slate-600 group-hover:text-blue-500 transition-colors" size={32} />
+                                    <MessageSquare className="text-slate-600 group-hover:text-blue-500 transition-colors" size={32} />
                                 </div>
                                 <p className="text-slate-400 mb-6 leading-relaxed">
-                                    A multi-modal deep learning framework integrating fMRI tensors with polygenic risk scores to detect early biomarkers of perimenopausal depression before symptom onset.
+                                    A patient-facing conversational intake system. CLARA helps women articulate their complex health history and symptoms before the appointment, creating a structured clinical narrative that ensures their voice is heard.
                                 </p>
                             </div>
 
-                            {/* Ovarian-Brain Atlas */}
-                            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 hover:bg-slate-800 hover:border-pink-500/30 transition-all group">
-                                <div className="flex justify-between items-start mb-6">
-                                    <div>
-                                        <div className="px-3 py-1 inline-block bg-pink-500/10 border border-pink-500/30 rounded-full text-pink-300 text-xs font-semibold tracking-wider uppercase mb-3">
-                                            In Development
-                                        </div>
-                                        <h3 className="text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">Ovarian-Brain Atlas</h3>
-                                        <p className="text-slate-500 font-mono text-sm">Longitudinal Mapping</p>
-                                    </div>
-                                    <Brain className="text-slate-600 group-hover:text-pink-500 transition-colors" size={32} />
-                                </div>
-                                <p className="text-slate-400 mb-6 leading-relaxed">
-                                    Mapping structural brain changes throughout the menstrual cycle using high-frequency MRI data combined with daily hormonal panels to create a baseline for "healthy" neuro-endocrine flux.
-                                </p>
-                            </div>
-
-                            {/* Project Chronos */}
+                            {/* AXIOM */}
                             <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 hover:bg-slate-800 hover:border-emerald-500/30 transition-all group">
                                 <div className="flex justify-between items-start mb-6">
                                     <div>
                                         <div className="px-3 py-1 inline-block bg-emerald-500/10 border border-emerald-500/30 rounded-full text-emerald-300 text-xs font-semibold tracking-wider uppercase mb-3">
-                                            Concept
+                                            Core Data
                                         </div>
-                                        <h3 className="text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">Project Chronos</h3>
-                                        <p className="text-slate-500 font-mono text-sm">Epigenetic Aging</p>
+                                        <h3 className="text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">AXIOM</h3>
+                                        <p className="text-slate-500 font-mono text-sm">Analytics & Truth Engine</p>
                                     </div>
-                                    <Clock className="text-slate-600 group-hover:text-emerald-500 transition-colors" size={32} />
+                                    <Database className="text-slate-600 group-hover:text-emerald-500 transition-colors" size={32} />
                                 </div>
                                 <p className="text-slate-400 mb-6 leading-relaxed">
-                                    Investigating the correlation between HPA-axis dysregulation and epigenetic aging markers during the menopausal transition to identify modifiable lifestyle factors.
+                                    The analytical backbone of our platform. AXIOM synthesizes multi-modal data streams from LUCIA and CLARA to identify population-level patterns and train more accurate diagnostic models for neuro-endocrine health.
+                                </p>
+                            </div>
+
+                            {/* SERENE */}
+                            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700 hover:bg-slate-800 hover:border-pink-500/30 transition-all group">
+                                <div className="flex justify-between items-start mb-6">
+                                    <div>
+                                        <div className="px-3 py-1 inline-block bg-pink-500/10 border border-pink-500/30 rounded-full text-pink-300 text-xs font-semibold tracking-wider uppercase mb-3">
+                                            Wellness
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-slate-200 group-hover:text-white transition-colors">SERENE</h3>
+                                        <p className="text-slate-500 font-mono text-sm">Psychoeducational Support</p>
+                                    </div>
+                                    <HeartPulse className="text-slate-600 group-hover:text-pink-500 transition-colors" size={32} />
+                                </div>
+                                <p className="text-slate-400 mb-6 leading-relaxed">
+                                    A retrieval-augmented AI platform providing accessible, evidence-based psychoeducation. SERENE offers coping strategies and mental health support tailored to specific midlife neuro-endocrine transitions.
                                 </p>
                             </div>
 
@@ -354,7 +350,7 @@
             const contributors = [
                 {
                     name: "Inna Campo, PhD",
-                    role: "Principal Investigator",
+                    role: "Founder, Principal Scientist",
                     bio: "Specializing in HPC, applied ML, and computational biology. Leading HARMONI's mission to bridge AI and women's health.",
                     tags: ["Computational Biology", "AI/ML", "Public Health"]
                 }
@@ -404,7 +400,7 @@
                                         <p className="text-slate-500 text-sm mt-1">We are actively looking for volunteers in Machine Learning, Neuroscience, and Grant Writing.</p>
                                     </div>
                                 </div>
-                                <button className="px-6 py-2 bg-white border border-slate-300 rounded-lg text-slate-700 font-medium text-sm group-hover:bg-violet-600 group-hover:text-white group-hover:border-transparent transition-all shadow-sm">
+                                <button onClick={() => window.location.href = "mailto:inna@harmonilab.org?subject=Volunteer Application: HARMONI Lab"} className="px-6 py-2 bg-white border border-slate-300 rounded-lg text-slate-700 font-medium text-sm group-hover:bg-violet-600 group-hover:text-white group-hover:border-transparent transition-all shadow-sm">
                                     Apply to Volunteer
                                 </button>
                             </div>
@@ -433,7 +429,7 @@
                                 <ul className="space-y-3 text-sm text-slate-600">
                                     <li className="flex items-center gap-2">
                                         <Mail size={16} />
-                                        <a href="mailto:inna@harmonilab.org" className="hover:text-violet-600">inna.campo@gmail.com</a>
+                                        <a href="mailto:inna@harmonilab.org" className="hover:text-violet-600">inna@harmonilab.org</a>
                                     </li>
                                     <li className="flex items-center gap-2">
                                         <MapPin size={16} />
