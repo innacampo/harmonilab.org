@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUCIA | Bias-Aware AI Agent</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lucia: {
+                            gold: '#F7D76D',      // Primary Background
+                            brown: '#5D3A1A',     // Accents & Text
+                            orange: '#FF8C00',    // Vitality
+                            redOrange: '#E65100', // Vitality Depth
+                            rust: '#B7410E',      // Deep Accent
+                            cream: '#FEF9E7',     // Light reading background
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+        
+        /* Custom scrollbar for a polished look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FEF9E7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #F7D76D;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E65100;
+        }
+    </style>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "react": "https://esm.sh/react@18.2.0",
+                "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+                "lucide-react": "https://esm.sh/lucide-react@0.263.1"
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-lucia-cream text-lucia-brown">
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+        import React, { useState, useEffect } from 'react';
+        import { createRoot } from 'react-dom/client';
+        import { 
+            Brain, Activity, ShieldAlert, ChevronRight, Menu, X, Mail, 
+            Database, Network, ArrowRight, FileText, Scale, Stethoscope, 
+            Microscope, UserCheck, MessageCircle, AlertCircle, CheckCircle2 
+        } from 'lucide-react';
+
+        const Navigation = () => {
+            const [isOpen, setIsOpen] = useState(false);
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    setScrolled(window.scrollY > 20);
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const navLinks = [
+                { name: 'The Challenge', href: '#challenge' },
+                { name: 'How It Works', href: '#architecture' },
+                { name: 'Case Study', href: '#demo' },
+                { name: 'Impact', href: '#impact' },
+            ];
+
+            return (
+                <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-lucia-cream/95 backdrop-blur-sm shadow-md py-2 border-b border-lucia-gold/30' : 'bg-transparent py-4'}`}>
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="flex justify-between items-center">
+                            <div className="flex items-center gap-2">
+                                <div className="w-8 h-8 rounded-full bg-lucia-redOrange flex items-center justify-center text-white font-serif font-bold">L</div>
+                                <span className={`text-2xl font-serif font-bold tracking-tight text-lucia-brown`}>
+                                    LUCIA
+                                </span>
+                            </div>
+                            
+                            <div className="hidden md:flex space-x-8">
+                                {navLinks.map((link) => (
+                                    <a
+                                        key={link.name}
+                                        href={link.href}
+                                        className="text-sm font-medium text-lucia-brown hover:text-lucia-redOrange transition-colors"
+                                    >
+                                        {link.name}
+                                    </a>
+                                ))}
+                            </div>
+
+                            <div className="flex items-center gap-4">
+                                <a href="https://github.com/innacampo/lucia_agent" target="_blank" className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full border border-lucia-brown/20 text-xs font-semibold hover:bg-lucia-brown hover:text-white transition-all">
+                                    GitHub
+                                </a>
+                                <div className="md:hidden">
+                                    <button onClick={() => setIsOpen(!isOpen)} className="text-lucia-brown hover:text-lucia-redOrange">
+                                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Mobile Menu */}
+                    {isOpen && (
+                        <div className="md:hidden bg-lucia-cream shadow-xl absolute w-full border-t border-lucia-gold/20">
+                            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                                {navLinks.map((link) => (
+                                    <a
+                                        key={link.name}
+                                        href={link.href}
+                                        onClick={() => setIsOpen(false)}
+                                        className="block px-3 py-2 text-base font-medium text-lucia-brown hover:bg-lucia-gold/20 hover:text-lucia-redOrange rounded-lg"
+                                    >
+                                        {link.name}
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </nav>
+            );
+        };
+
+        const Hero = () => {
+            return (
+                <div className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-lucia-gold">
+                    {/* Abstract Background Elements */}
+                    <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-lucia-orange opacity-30 blur-3xl mix-blend-multiply"></div>
+                    <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-lucia-rust opacity-20 blur-3xl mix-blend-multiply"></div>
+                    
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div className="text-center max-w-4xl mx-auto">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lucia-brown/10 border border-lucia-brown/20 text-lucia-brown text-xs font-bold uppercase tracking-wider mb-6">
+                                <span className="w-2 h-2 rounded-full bg-lucia-redOrange animate-pulse"></span>
+                                Agents Intensive Capstone Project
+                            </div>
+                            <h1 className="text-5xl md:text-7xl font-bold text-lucia-brown tracking-tight mb-6 leading-tight">
+                                Closing the Gender <br/>
+                                <span className="text-lucia-redOrange">Diagnostic Gap</span>
+                            </h1>
+                            <p className="text-xl md:text-2xl text-lucia-brown/80 mb-10 leading-relaxed font-light max-w-2xl mx-auto">
+                                LUCIA is a bias-aware AI agent ensuring women's symptoms are treated as evidence, not complaints.
+                            </p>
+                            <div className="flex flex-col sm:flex-row justify-center gap-4">
+                                <a href="#architecture" className="px-8 py-4 bg-lucia-brown text-white font-semibold rounded-lg hover:bg-lucia-rust transition-colors shadow-lg shadow-lucia-brown/20 flex items-center justify-center gap-2">
+                                    How It Works <ChevronRight size={18} />
+                                </a>
+                                <a href="#demo" className="px-8 py-4 bg-transparent border-2 border-lucia-brown text-lucia-brown font-semibold rounded-lg hover:bg-lucia-brown/5 transition-all flex items-center justify-center gap-2">
+                                    View Case Study
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Challenge = () => {
+            return (
+                <div id="challenge" className="py-24 bg-white relative">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid lg:grid-cols-2 gap-16 items-center">
+                            <div>
+                                <h2 className="text-sm font-bold text-lucia-redOrange uppercase tracking-wide mb-3">The Shared Challenge</h2>
+                                <h3 className="text-4xl font-serif font-bold text-lucia-brown mb-6">A System Under Strain</h3>
+                                <p className="text-lucia-brown/80 mb-6 leading-relaxed text-lg">
+                                    The crisis in women's health hurts everyone. Patients feel unheard, often experiencing "medical gaslighting," but clinicians are equally trapped—battling burnout, 15-minute appointment windows, and guidelines based on historically incomplete research.
+                                </p>
+                                <div className="bg-lucia-gold/20 border-l-4 border-lucia-orange p-6 rounded-r-lg mb-8">
+                                    <p className="italic text-lucia-brown font-medium text-lg">
+                                        "Women face on average a four-year diagnostic delay compared to men across hundreds of conditions."
+                                    </p>
+                                    <p className="text-sm mt-2 text-lucia-brown/60">— Nature Communications (2019)</p>
+                                </div>
+                                <p className="text-lucia-brown/80 leading-relaxed">
+                                    This is often rooted in <strong>"diagnostic shadowing,"</strong> where physical symptoms are wrongly attributed to mental health issues. It is rarely malice; rather, it is a byproduct of cognitive fatigue and a medical literature gap.
+                                </p>
+                            </div>
+                            
+                            <div className="grid gap-6">
+                                <div className="bg-lucia-cream p-8 rounded-2xl border border-lucia-gold/50 hover:shadow-lg transition-all group">
+                                    <div className="w-12 h-12 bg-lucia-rust/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-lucia-rust group-hover:text-white transition-colors text-lucia-rust">
+                                        <AlertCircle size={24} />
+                                    </div>
+                                    <h4 className="font-bold text-lucia-brown text-xl mb-2">Diagnostic Shadowing</h4>
+                                    <p className="text-lucia-brown/70">Physical symptoms (e.g., heart disease) are misclassified as anxiety or "nerves."</p>
+                                </div>
+                                <div className="bg-lucia-cream p-8 rounded-2xl border border-lucia-gold/50 hover:shadow-lg transition-all group">
+                                    <div className="w-12 h-12 bg-lucia-orange/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-lucia-orange group-hover:text-white transition-colors text-lucia-orange">
+                                        <Database size={24} />
+                                    </div>
+                                    <h4 className="font-bold text-lucia-brown text-xl mb-2">Data Voids</h4>
+                                    <p className="text-lucia-brown/70">Medical literature often treats male physiology as the default, leaving gaps in women's care.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Architecture = () => {
+            const steps = [
+                {
+                    id: "01",
+                    role: "The Digital Scribe",
+                    agent: "Symptom Mapper",
+                    icon: <FileText className="w-6 h-6" />,
+                    desc: "Ingests narrative and translates emotional history into a structured Review of Systems (ROS). Maps terms like 'brain fog' to neurological clusters.",
+                    color: "bg-lucia-brown"
+                },
+                {
+                    id: "02",
+                    role: "Clinical Decision Support",
+                    agent: "Bias Analyzer",
+                    icon: <ShieldAlert className="w-6 h-6" />,
+                    desc: "Audits the narrative for cognitive traps like premature closure. Queries the AXIOM Engine to flag potential bias pivot points.",
+                    color: "bg-lucia-rust"
+                },
+                {
+                    id: "03",
+                    role: "Patient Prep Engine",
+                    agent: "Advocacy Generator",
+                    icon: <UserCheck className="w-6 h-6" />,
+                    desc: "Transforms anxiety into a structured agenda. Generates differential diagnosis requests to focus the conversation on clinical investigation.",
+                    color: "bg-lucia-redOrange"
+                },
+                {
+                    id: "04",
+                    role: "The Clinical Handoff",
+                    agent: "Report Formatter",
+                    icon: <Scale className="w-6 h-6" />,
+                    desc: "Compiles the final output into a professional Consultation Brief (Subjective Assessment → Plan), positioning patient and doctor as partners.",
+                    color: "bg-lucia-orange"
+                }
+            ];
+
+            return (
+                <div id="architecture" className="py-24 bg-lucia-cream">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-sm font-bold text-lucia-redOrange uppercase tracking-wide mb-3">Architecture</h2>
+                            <h3 className="text-4xl font-serif font-bold text-lucia-brown mb-6">The Dual-Stream Engine</h3>
+                            <p className="text-lucia-brown/70 max-w-2xl mx-auto text-lg">
+                                LUCIA utilizes a Multi-Agent Architecture built on the Google Agent Development Kit (ADK). It separates the patient's voice from clinical assumptions.
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-4 gap-6">
+                            {steps.map((step, index) => (
+                                <div key={index} className="bg-white rounded-xl p-6 shadow-sm border-t-4 border-transparent hover:border-lucia-orange hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 p-4 opacity-10 font-serif text-6xl font-bold text-lucia-brown">
+                                        {step.id}
+                                    </div>
+                                    <div className={`${step.color} w-12 h-12 rounded-lg flex items-center justify-center mb-6 text-white shadow-md group-hover:scale-110 transition-transform`}>
+                                        {step.icon}
+                                    </div>
+                                    <h4 className="text-xs font-bold text-lucia-redOrange uppercase tracking-wider mb-1">{step.agent}</h4>
+                                    <h3 className="text-lg font-bold text-lucia-brown mb-3 leading-tight">{step.role}</h3>
+                                    <p className="text-lucia-brown/70 text-sm leading-relaxed">
+                                        {step.desc}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                        
+                        {/* AXIOM Connection */}
+                        <div className="mt-12 bg-white rounded-2xl p-8 border border-lucia-gold/30 flex flex-col md:flex-row items-center gap-8 shadow-sm">
+                            <div className="flex-shrink-0 w-16 h-16 bg-lucia-gold rounded-full flex items-center justify-center text-lucia-brown">
+                                <Database size={32} />
+                            </div>
+                            <div>
+                                <h4 className="text-xl font-bold text-lucia-brown mb-2">Powered by AXIOM Knowledge Base</h4>
+                                <p className="text-lucia-brown/70">
+                                    LUCIA doesn't just guess; she verifies. The Bias Analyzer queries the AXIOM Engine, a validated dictionary of bias implications, to ground insights in external, controlled facts rather than LLM weights.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const DemoScenario = () => {
+            return (
+                <div id="demo" className="py-24 bg-lucia-brown text-lucia-cream relative overflow-hidden">
+                    {/* Background Texture */}
+                    <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" style={{backgroundImage: 'radial-gradient(#F7D76D 1px, transparent 1px)', backgroundSize: '30px 30px'}}></div>
+
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                        <div className="mb-16">
+                            <div className="inline-block px-3 py-1 bg-lucia-rust rounded-full text-xs font-bold uppercase tracking-wider mb-4 text-white">Live Scenario</div>
+                            <h2 className="text-4xl font-serif font-bold text-lucia-gold mb-6">The "Perimenopause" Dismissal</h2>
+                            <p className="text-lucia-cream/80 max-w-2xl text-lg">
+                                In this real-world scenario, a 48-year-old user shares a frustrating interaction regarding autoimmune-like symptoms that were dismissed as "empty nest syndrome."
+                            </p>
+                        </div>
+
+                        <div className="grid lg:grid-cols-2 gap-12">
+                            {/* Input Column */}
+                            <div className="space-y-6">
+                                <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="w-8 h-8 rounded-full bg-lucia-gold text-lucia-brown flex items-center justify-center font-bold">U</div>
+                                        <span className="font-bold text-lucia-gold">User Input (Narrative)</span>
+                                    </div>
+                                    <p className="text-lucia-cream/90 italic leading-relaxed">
+                                        "I've been waking up with stiff, swollen joints in my hands and feet for three months. The fatigue is so bad I have to nap in my car at lunch... He told me that at 48, this is just classic perimenopause and 'empty nest syndrome' making me depressed... He just told me to lose 10 pounds and try meditation to calm my 'nerves'..."
+                                    </p>
+                                </div>
+
+                                <div className="bg-lucia-rust/20 p-6 rounded-2xl border border-lucia-rust/30">
+                                    <h4 className="font-bold text-lucia-rust mb-3 flex items-center gap-2">
+                                        <Activity size={18} /> Internal Processing
+                                    </h4>
+                                    <ul className="space-y-3 text-sm text-lucia-cream/80">
+                                        <li className="flex gap-2">
+                                            <span className="text-lucia-gold">➤</span>
+                                            <span><strong>Symptom Mapper:</strong> Maps "stiff/swollen joints" to <em>Musculoskeletal Cluster</em>.</span>
+                                        </li>
+                                        <li className="flex gap-2">
+                                            <span className="text-lucia-gold">➤</span>
+                                            <span><strong>Bias Analyzer:</strong> Detects attribution of swelling to "nerves" (Ageism/Gender Bias).</span>
+                                        </li>
+                                        <li className="flex gap-2">
+                                            <span className="text-lucia-gold">➤</span>
+                                            <span><strong>Tool Call:</strong> <code>get_bias_implications("ageism_bias")</code> returns risk of missed heart disease/cancer diagnoses.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            {/* Output Column */}
+                            <div className="bg-lucia-cream text-lucia-brown rounded-2xl shadow-2xl p-8 relative">
+                                <div className="absolute top-0 right-0 bg-lucia-redOrange text-white text-xs font-bold px-4 py-2 rounded-bl-xl rounded-tr-xl">
+                                    LUCIA GENERATED REPORT
+                                </div>
+                                <h3 className="font-serif font-bold text-2xl mb-6 border-b border-lucia-brown/10 pb-4">Patient Advocacy Brief</h3>
+                                
+                                <div className="space-y-6">
+                                    <div>
+                                        <h4 className="font-bold text-sm uppercase tracking-wide text-lucia-rust mb-2">Bias Insights</h4>
+                                        <div className="bg-red-50 p-4 rounded-lg border border-red-100">
+                                            <div className="flex items-start gap-3">
+                                                <ShieldAlert className="text-red-600 shrink-0 mt-1" size={18} />
+                                                <div>
+                                                    <p className="text-sm font-bold text-red-800">Ageism & Gender Bias Detected</p>
+                                                    <p className="text-sm text-red-700 mt-1">
+                                                        Doctor attributed joint swelling to "empty nest syndrome" without tests. Risk: Dismissing autoimmune or cardiovascular signals.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h4 className="font-bold text-sm uppercase tracking-wide text-lucia-rust mb-2">Suggested Script</h4>
+                                        <ul className="space-y-3">
+                                            <li className="flex items-start gap-3">
+                                                <MessageCircle className="text-lucia-brown/40 shrink-0 mt-1" size={18} />
+                                                <p className="text-sm font-medium">"What further evaluations could help understand my stiff and swollen joints specifically?"</p>
+                                            </li>
+                                            <li className="flex items-start gap-3">
+                                                <MessageCircle className="text-lucia-brown/40 shrink-0 mt-1" size={18} />
+                                                <p className="text-sm font-medium">"Could we explore explanations for my symptoms beyond age-related changes, given the physical swelling?"</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Impact = () => {
+            return (
+                <div id="impact" className="py-24 bg-white">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl font-serif font-bold text-lucia-brown mb-6">A Bridge, Not a Wedge</h2>
+                            <p className="text-lucia-brown/70 max-w-2xl mx-auto text-lg">
+                                LUCIA is designed to support the patient-provider relationship, not replace it.
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-8">
+                            {/* Clinician Card */}
+                            <div className="bg-lucia-cream rounded-2xl p-8 border border-lucia-gold hover:border-lucia-orange transition-colors group">
+                                <div className="w-14 h-14 bg-lucia-brown text-white rounded-xl flex items-center justify-center mb-6 shadow-lg rotate-3 group-hover:rotate-0 transition-transform">
+                                    <Stethoscope size={28} />
+                                </div>
+                                <h3 className="text-2xl font-bold text-lucia-brown mb-4">For the Clinician</h3>
+                                <ul className="space-y-4">
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-lucia-redOrange shrink-0 mt-1" size={20} />
+                                        <div>
+                                            <span className="font-bold text-lucia-brown block">Efficiency & Safety</span>
+                                            <span className="text-lucia-brown/70 text-sm">Acts as an intelligent "pre-screener," synthesizing narratives into structured data before the patient enters the room.</span>
+                                        </div>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-lucia-redOrange shrink-0 mt-1" size={20} />
+                                        <div>
+                                            <span className="font-bold text-lucia-brown block">Reduces Cognitive Load</span>
+                                            <span className="text-lucia-brown/70 text-sm">Serves as a safety net against burnout-induced errors and diagnostic shadowing.</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            {/* Researcher Card */}
+                            <div className="bg-lucia-brown rounded-2xl p-8 text-lucia-cream hover:bg-lucia-brown/95 transition-colors group">
+                                <div className="w-14 h-14 bg-lucia-gold text-lucia-brown rounded-xl flex items-center justify-center mb-6 shadow-lg -rotate-3 group-hover:rotate-0 transition-transform">
+                                    <Microscope size={28} />
+                                </div>
+                                <h3 className="text-2xl font-bold text-lucia-gold mb-4">For the Researcher</h3>
+                                <ul className="space-y-4">
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-lucia-gold shrink-0 mt-1" size={20} />
+                                        <div>
+                                            <span className="font-bold text-white block">Discovery & Equity</span>
+                                            <span className="text-lucia-cream/70 text-sm">Aims to repair the foundation of medical knowledge by collecting patient narratives to fill medical "Data Voids".</span>
+                                        </div>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-lucia-gold shrink-0 mt-1" size={20} />
+                                        <div>
+                                            <span className="font-bold text-white block">Longitudinal Observation</span>
+                                            <span className="text-lucia-cream/70 text-sm">Provides a view of a patient's journey over time, revealing cyclical patterns invisible in snapshot appointments.</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Footer = () => {
+            return (
+                <footer className="bg-lucia-brown text-lucia-cream pt-16 pb-8 border-t border-lucia-gold/20">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid md:grid-cols-4 gap-8 mb-12">
+                            <div className="col-span-1 md:col-span-2">
+                                <div className="flex items-center gap-2 mb-4">
+                                    <span className="text-2xl font-serif font-bold text-lucia-gold">
+                                        LUCIA
+                                    </span>
+                                </div>
+                                <p className="text-lucia-cream/60 max-w-sm text-sm leading-relaxed">
+                                    A project by HARMONI Lab. Exploring the impact of hormonal changes on brain and behavior within neurology, psychiatry, and psychology.
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <h4 className="font-bold text-lucia-gold mb-4">Project</h4>
+                                <ul className="space-y-3 text-sm text-lucia-cream/60">
+                                    <li><a href="#" className="hover:text-lucia-orange transition-colors">About</a></li>
+                                    <li><a href="#architecture" className="hover:text-lucia-orange transition-colors">Architecture</a></li>
+                                    <li><a href="#impact" className="hover:text-lucia-orange transition-colors">Future Vision</a></li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h4 className="font-bold text-lucia-gold mb-4">Connect</h4>
+                                <ul className="space-y-3 text-sm text-lucia-cream/60">
+                                    <li className="flex items-center gap-2">
+                                        <Network size={16} />
+                                        <a href="https://github.com/innacampo/lucia_agent" target="_blank" className="hover:text-lucia-orange transition-colors">GitHub Repository</a>
+                                    </li>
+                                    <li className="flex items-center gap-2">
+                                        <Database size={16} />
+                                        <a href="https://www.kaggle.com/competitions/agents-intensive-capstone-project/writeups/lucia-bias-aware-ai-agent" className="hover:text-lucia-orange transition-colors">Kaggle Writeup</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div className="border-t border-lucia-cream/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-lucia-cream/40">
+                            <p>&copy; {new Date().getFullYear()} Inna Campo / HARMONI Lab. Released under CC BY 4.0.</p>
+                            <p className="mt-2 md:mt-0">Built with Google Agent Development Kit</p>
+                        </div>
+                    </div>
+                </footer>
+            );
+        };
+
+        const App = () => {
+            return (
+                <div className="min-h-screen font-sans selection:bg-lucia-redOrange selection:text-white">
+                    <Navigation />
+                    <Hero />
+                    <Challenge />
+                    <Architecture />
+                    <DemoScenario />
+                    <Impact />
+                    <Footer />
+                </div>
+            );
+        };
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
