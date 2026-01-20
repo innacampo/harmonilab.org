@@ -1,24 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CLARA | Clinical Logic Assessment</title>
-    
+
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://esm.sh">
+    <link rel="preconnect" href="https://unpkg.com">
+
+    <!-- SEO & Social Meta Tags -->
+    <meta name="description"
+        content="CLARA is a multimodal AI system that audits clinical logic to detect diagnostic shadowing before it harms patient care.">
+    <meta property="og:title" content="CLARA | Clinical Logic Assessment">
+    <meta property="og:description"
+        content="CLARA is a multimodal AI system that audits clinical logic to detect diagnostic shadowing before it harms patient care.">
+    <meta property="og:image" content="https://harmonilab.org/clara-og.jpg">
+    <meta property="og:url" content="https://harmonilab.org/clara.html">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
         /* Smooth scrolling */
-        html { scroll-behavior: smooth; }
-        
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
     </style>
 
     <script type="importmap">
@@ -33,15 +69,16 @@
 
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
+
 <body class="bg-white text-slate-900">
     <div id="root"></div>
 
     <script type="text/babel" data-type="module">
         import React, { useState, useEffect } from 'react';
         import { createRoot } from 'react-dom/client';
-        import { 
-            Brain, Shield, Activity, ChevronRight, Menu, X, Database, 
-            Zap, Clock, AlertTriangle, FileJson, CheckCircle2, 
+        import {
+            Brain, Shield, Activity, ChevronRight, Menu, X, Database,
+            Zap, Clock, AlertTriangle, FileJson, CheckCircle2,
             Stethoscope, Lock, ArrowRight, GitBranch, Mic, Search,
             Cpu, Radio, Network
         } from 'lucide-react';
@@ -75,7 +112,7 @@
                                     HARMONI <span className="text-violet-600">Lab</span> / CLARA
                                 </a>
                             </div>
-                            
+
                             <div className="hidden md:flex space-x-8 items-center">
                                 {navLinks.map((link) => (
                                     <a
@@ -126,7 +163,7 @@
                 <div className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50">
                     <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-violet-100 opacity-50 blur-3xl"></div>
                     <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blue-100 opacity-50 blur-3xl"></div>
-                    
+
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                         <div className="max-w-4xl mx-auto text-center">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 border border-violet-100 text-violet-700 text-xs font-bold uppercase tracking-wider mb-6">
@@ -168,20 +205,20 @@
                                     However, this is rarely negligence. It is a failure of <strong>Dual Process Theory</strong> under pressure. High cognitive load forces physicians to rely on "System 1" (fast, heuristic thinking), bypassing "System 2" (slow, analytical thinking).
                                 </p>
                                 <div className="bg-red-50 p-6 rounded-xl border border-red-100 mt-8">
-                                    <h4 className="font-bold text-red-700 mb-2 flex items-center gap-2"><AlertTriangle size={18}/> Diagnostic Shadowing</h4>
+                                    <h4 className="font-bold text-red-700 mb-2 flex items-center gap-2"><AlertTriangle size={18} /> Diagnostic Shadowing</h4>
                                     <p className="text-red-600/80 text-sm leading-relaxed">
                                         A bias where physical symptoms are misattributed to psychiatric history (e.g., "It's just anxiety"). Harmless shortcuts mutate into dangerous biases when doctors are exhausted.
                                     </p>
                                 </div>
                             </div>
-                            
+
                             <div className="relative">
                                 {/* Visualizing System 1 vs System 2 */}
                                 <div className="bg-slate-900 rounded-2xl p-8 text-white relative overflow-hidden shadow-xl border border-slate-800">
                                     <div className="absolute top-0 right-0 p-32 bg-violet-500 opacity-20 rounded-full blur-3xl translate-x-10 -translate-y-10"></div>
-                                    
+
                                     <h4 className="font-bold text-2xl mb-8 text-center text-white">The Cognitive Gap</h4>
-                                    
+
                                     <div className="space-y-6">
                                         <div className="flex items-center gap-4 opacity-40">
                                             <div className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center font-bold text-xl font-mono">1</div>
@@ -190,7 +227,7 @@
                                                 <p className="text-sm">Fast, Intuitive, Prone to Bias</p>
                                             </div>
                                         </div>
-                                        
+
                                         <div className="flex justify-center">
                                             <div className="h-8 w-px bg-white/20"></div>
                                         </div>
@@ -277,7 +314,7 @@
                 <div id="audit" className="py-24 bg-slate-900 text-white relative overflow-hidden">
                     {/* Abstract background elements */}
                     <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-violet-900/10 to-transparent"></div>
-                    
+
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                         <div className="flex flex-col md:flex-row justify-between items-end mb-12">
                             <div>
@@ -294,7 +331,7 @@
 
                         {/* The Audit Interface */}
                         <div className="grid lg:grid-cols-12 gap-6">
-                            
+
                             {/* Input: Audio Stream Visualization */}
                             <div className="lg:col-span-5 space-y-4">
                                 <div className="bg-slate-800/50 backdrop-blur-md rounded-2xl border border-slate-700 p-6 shadow-xl">
@@ -302,7 +339,7 @@
                                         <span className="text-xs font-bold text-violet-400 uppercase tracking-wider">Input Stream</span>
                                         <span className="text-xs text-slate-500 font-mono">04:12</span>
                                     </div>
-                                    
+
                                     {/* Waveform graphic */}
                                     <div className="flex items-center gap-1 h-12 mb-6">
                                         {[...Array(20)].map((_, i) => (
@@ -373,9 +410,9 @@
                                             <span className="text-red-400">"recommendation"</span>: <span className="text-emerald-400">"Orthostatic Vitals"</span>
                                         </div>
                                         <div className="text-purple-400">{"}"}</div>
-                                        
+
                                         <div className="mt-4 p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-200 font-sans text-xs">
-                                            <strong className="text-red-400 flex items-center gap-1 mb-1"><AlertTriangle size={12}/> RISK DETECTED</strong>
+                                            <strong className="text-red-400 flex items-center gap-1 mb-1"><AlertTriangle size={12} /> RISK DETECTED</strong>
                                             Premature Closure. Physical symptoms attributed to mental health without exclusionary testing.
                                         </div>
                                     </div>
@@ -445,31 +482,56 @@
                                     An AI-driven project exploring the impact of hormonal changes on female brain and behavior.
                                 </p>
                             </div>
-                            
-                            <div>
-                                <h4 className="font-bold text-slate-900 mb-4">Resources</h4>
-                                <ul className="space-y-3 text-sm text-slate-600">
-                                    <li><a href="#" className="hover:text-violet-600">Whitepaper</a></li>
-                                    <li><a href="https://youtu.be/9_MX21xChic" target="_blank" className="hover:text-violet-600">Video Demo</a></li>
-                                    <li><a href="#methodology" className="hover:text-violet-600">Methodology</a></li>
-                                </ul>
+
+                            <div className="col-span-1 md:col-span-1">
+                                <h4 className="font-bold text-slate-900 mb-4">Contact</h4>
+                                <form action="https://formspree.io/f/xgoolwyl" method="POST" className="space-y-4">
+                                    <div>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            placeholder="Your Name"
+                                            required
+                                            className="w-full px-4 py-2 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-sm transition-all"
+                                        />
+                                    </div>
+                                    <div>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            placeholder="Your Email"
+                                            required
+                                            className="w-full px-4 py-2 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-sm transition-all"
+                                        />
+                                    </div>
+                                    <div>
+                                        <textarea
+                                            name="message"
+                                            placeholder="Your Message"
+                                            rows="3"
+                                            required
+                                            className="w-full px-4 py-2 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-sm transition-all resize-none"
+                                        ></textarea>
+                                    </div>
+                                    <button
+                                        type="submit"
+                                        className="w-full py-2 bg-violet-600 text-white font-semibold rounded-lg hover:bg-violet-700 transition-colors shadow-sm text-sm"
+                                    >
+                                        Send Message
+                                    </button>
+                                </form>
                             </div>
-                            
+
                             <div>
-                                <h4 className="font-bold text-slate-900 mb-4">Connect</h4>
+                                <h4 className="font-bold text-slate-900 mb-4">Links</h4>
                                 <ul className="space-y-3 text-sm text-slate-600">
-                                    <li className="flex items-center gap-2">
-                                        <Network size={16} />
-                                        <a href="#" className="hover:text-violet-600">GitHub Repository</a>
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <Database size={16} />
-                                        <a href="#" className="hover:text-violet-600">Kaggle Writeup</a>
-                                    </li>
+                                    <li><a href="index.html" className="hover:text-violet-600">Home</a></li>
+                                    <li><a href="lucia.html" className="hover:text-violet-600">LUCIA</a></li>
+                                    <li><a href="serene.html" className="hover:text-violet-600">SERENE</a></li>
                                 </ul>
                             </div>
                         </div>
-                        
+
                         <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-400">
                             <p>&copy; {new Date().getFullYear()} Inna Campo / HARMONI Lab. All rights reserved.</p>
                             <p className="mt-2 md:mt-0">Built with Google AI Studio</p>
@@ -497,4 +559,5 @@
         root.render(<App />);
     </script>
 </body>
+
 </html>

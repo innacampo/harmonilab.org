@@ -1,18 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUCIA | Bias-Aware AI Agent</title>
-    
+
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://esm.sh">
+    <link rel="preconnect" href="https://unpkg.com">
+
+    <!-- SEO & Social Meta Tags -->
+    <meta name="description"
+        content="LUCIA is a bias-aware AI agent ensuring women's symptoms are treated as evidence, not complaints, closing the gender diagnostic gap.">
+    <meta property="og:title" content="LUCIA | Bias-Aware AI Agent">
+    <meta property="og:description"
+        content="LUCIA is a bias-aware AI agent ensuring women's symptoms are treated as evidence, not complaints, closing the gender diagnostic gap.">
+    <meta property="og:image" content="https://harmonilab.org/lucia-og.jpg">
+    <meta property="og:url" content="https://harmonilab.org/lucia.html">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
         /* Smooth scrolling */
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 
     <script type="importmap">
@@ -27,16 +51,17 @@
 
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
+
 <body class="bg-white text-slate-900">
     <div id="root"></div>
 
     <script type="text/babel" data-type="module">
         import React, { useState, useEffect } from 'react';
         import { createRoot } from 'react-dom/client';
-        import { 
-            Brain, Activity, ShieldAlert, ChevronRight, Menu, X, Mail, 
-            Database, Network, ArrowRight, FileText, Scale, Stethoscope, 
-            Microscope, UserCheck, MessageCircle, AlertCircle, CheckCircle2 
+        import {
+            Brain, Activity, ShieldAlert, ChevronRight, Menu, X, Mail,
+            Database, Network, ArrowRight, FileText, Scale, Stethoscope,
+            Microscope, UserCheck, MessageCircle, AlertCircle, CheckCircle2
         } from 'lucide-react';
 
         const Navigation = () => {
@@ -68,7 +93,7 @@
                                     HARMONI <span className="text-violet-600">Lab</span> / LUCIA
                                 </a>
                             </div>
-                            
+
                             <div className="hidden md:flex space-x-8 items-center">
                                 {navLinks.map((link) => (
                                     <a
@@ -118,7 +143,7 @@
                 <div className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50">
                     <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-violet-100 opacity-50 blur-3xl"></div>
                     <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blue-100 opacity-50 blur-3xl"></div>
-                    
+
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                         <div className="text-center max-w-4xl mx-auto">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 border border-violet-100 text-violet-700 text-xs font-bold uppercase tracking-wider mb-6">
@@ -166,7 +191,7 @@
                                     This is often rooted in <strong>"diagnostic shadowing,"</strong> where physical symptoms are wrongly attributed to mental health issues. It is rarely malice; rather, it is a byproduct of cognitive fatigue and a medical literature gap.
                                 </p>
                             </div>
-                            
+
                             <div className="grid gap-6">
                                 <div className="bg-white p-8 rounded-xl border border-slate-100 shadow-sm hover:shadow-lg transition-all group">
                                     <div className="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform text-red-600">
@@ -252,7 +277,7 @@
                                 </div>
                             ))}
                         </div>
-                        
+
                         {/* AXIOM Connection */}
                         <div className="mt-12 bg-white rounded-xl p-8 border border-slate-100 flex flex-col md:flex-row items-center gap-8 shadow-sm">
                             <div className="flex-shrink-0 w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center text-slate-400">
@@ -327,7 +352,7 @@
                                     LUCIA GENERATED REPORT
                                 </div>
                                 <h3 className="font-bold text-2xl mb-6 text-slate-900">Patient Advocacy Brief</h3>
-                                
+
                                 <div className="space-y-6">
                                     <div>
                                         <h4 className="font-bold text-xs uppercase tracking-wide text-violet-600 mb-2">Bias Insights</h4>
@@ -443,31 +468,56 @@
                                     An AI-driven project exploring the impact of hormonal changes on female brain and behavior.
                                 </p>
                             </div>
-                            
+
+                            <div className="col-span-1 md:col-span-1">
+                                <h4 className="font-bold text-slate-900 mb-4">Contact</h4>
+                                <form action="https://formspree.io/f/xgoolwyl" method="POST" className="space-y-4">
+                                    <div>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            placeholder="Your Name"
+                                            required
+                                            className="w-full px-4 py-2 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-sm transition-all"
+                                        />
+                                    </div>
+                                    <div>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            placeholder="Your Email"
+                                            required
+                                            className="w-full px-4 py-2 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-sm transition-all"
+                                        />
+                                    </div>
+                                    <div>
+                                        <textarea
+                                            name="message"
+                                            placeholder="Your Message"
+                                            rows="3"
+                                            required
+                                            className="w-full px-4 py-2 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-sm transition-all resize-none"
+                                        ></textarea>
+                                    </div>
+                                    <button
+                                        type="submit"
+                                        className="w-full py-2 bg-violet-600 text-white font-semibold rounded-lg hover:bg-violet-700 transition-colors shadow-sm text-sm"
+                                    >
+                                        Send Message
+                                    </button>
+                                </form>
+                            </div>
+
                             <div>
-                                <h4 className="font-bold text-slate-900 mb-4">Project</h4>
+                                <h4 className="font-bold text-slate-900 mb-4">Links</h4>
                                 <ul className="space-y-3 text-sm text-slate-600">
                                     <li><a href="index.html" className="hover:text-violet-600">Home</a></li>
-                                    <li><a href="#architecture" className="hover:text-violet-600">Architecture</a></li>
-                                    <li><a href="#impact" className="hover:text-violet-600">Future Vision</a></li>
-                                </ul>
-                            </div>
-                            
-                            <div>
-                                <h4 className="font-bold text-slate-900 mb-4">Connect</h4>
-                                <ul className="space-y-3 text-sm text-slate-600">
-                                    <li className="flex items-center gap-2">
-                                        <Network size={16} />
-                                        <a href="https://github.com/innacampo/lucia_agent" target="_blank" className="hover:text-violet-600">GitHub Repository</a>
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <Database size={16} />
-                                        <a href="https://www.kaggle.com/competitions/agents-intensive-capstone-project/writeups/lucia-bias-aware-ai-agent" className="hover:text-violet-600">Kaggle Writeup</a>
-                                    </li>
+                                    <li><a href="clara.html" className="hover:text-violet-600">CLARA</a></li>
+                                    <li><a href="serene.html" className="hover:text-violet-600">SERENE</a></li>
                                 </ul>
                             </div>
                         </div>
-                        
+
                         <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-400">
                             <p>&copy; {new Date().getFullYear()} Inna Campo / HARMONI Lab. All rights reserved.</p>
                             <p className="mt-2 md:mt-0">Built with Google Agent Development Kit</p>
@@ -495,4 +545,5 @@
         root.render(<App />);
     </script>
 </body>
+
 </html>
