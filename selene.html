@@ -64,6 +64,11 @@
         const ShieldCheck = (props) => <svg {...props} width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 15.5c-2.38 0-4.5-2.12-4.5-4.5s2.12-4.5 4.5-4.5 4.5 2.12 4.5 4.5-2.12 4.5-4.5 4.5zm0-7c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>;
         const Heart = (props) => <svg {...props} width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>;
         const Zap = (props) => <svg {...props} width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>;
+        const BookOpen = (props) => <svg {...props} width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>;
+        const Lock = (props) => <svg {...props} width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>;
+        const MessageCircle = (props) => <svg {...props} width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>;
+        const Github = (props) => <svg {...props} width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>;
+        const LinkedIn = (props) => <svg {...props} width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>;
 
         const Navigation = () => {
             const [isOpen, setIsOpen] = useState(false);
@@ -216,72 +221,128 @@
             );
         };
 
+        const Features = () => {
+            const features = [
+                {
+                    icon: <BookOpen className="w-6 h-6" />,
+                    title: "Evidence-Based Content",
+                    description: "All information is sourced from peer-reviewed research and clinical guidelines, with transparent citations."
+                },
+                {
+                    icon: <Lock className="w-6 h-6" />,
+                    title: "Privacy-First Design",
+                    description: "Your data stays on your device. SELENE operates locally with no external data transmission."
+                },
+                {
+                    icon: <MessageCircle className="w-6 h-6" />,
+                    title: "Conversational Support",
+                    description: "Natural dialogue interface that understands context and provides personalized guidance."
+                },
+                {
+                    icon: <Heart className="w-6 h-6" />,
+                    title: "Wellness Resources",
+                    description: "Curated coping strategies, lifestyle recommendations, and self-care tools for every stage."
+                }
+            ];
+
+            return (
+                <div id="features" className="py-20 bg-slate-50">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-sm font-bold text-violet-600 uppercase tracking-wide mb-2">Features</h2>
+                            <h3 className="text-3xl font-bold text-slate-900">Designed for Your Journey</h3>
+                        </div>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {features.map((feature, idx) => (
+                                <div key={idx} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-lg hover:border-violet-100 transition-all">
+                                    <div className="w-12 h-12 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center mb-4">
+                                        {feature.icon}
+                                    </div>
+                                    <h4 className="font-bold text-slate-900 mb-2">{feature.title}</h4>
+                                    <p className="text-slate-600 text-sm leading-relaxed">{feature.description}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const Impact = () => {
+            return (
+                <div id="impact" className="py-20 bg-violet-600 text-white">
+                    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                        <h2 className="text-sm font-bold text-violet-200 uppercase tracking-wide mb-2">Impact</h2>
+                        <h3 className="text-3xl font-bold mb-6">Knowledge is Empowerment</h3>
+                        <p className="text-violet-100 text-lg leading-relaxed mb-8">
+                            Understanding the biological basis of symptoms can significantly reduce anxiety and improve self-advocacy. 
+                            SELENE helps normalize the perimenopause experience, connecting women with evidence-based information 
+                            when they need it most.
+                        </p>
+                        <div className="grid md:grid-cols-3 gap-6">
+                            <div className="bg-white/10 rounded-xl p-6 backdrop-blur">
+                                <p className="text-3xl font-bold text-white mb-1">24/7</p>
+                                <p className="text-violet-200 text-sm">Always Available Support</p>
+                            </div>
+                            <div className="bg-white/10 rounded-xl p-6 backdrop-blur">
+                                <p className="text-3xl font-bold text-white mb-1">100%</p>
+                                <p className="text-violet-200 text-sm">Private & On-Device</p>
+                            </div>
+                            <div className="bg-white/10 rounded-xl p-6 backdrop-blur">
+                                <p className="text-3xl font-bold text-white mb-1">15+</p>
+                                <p className="text-violet-200 text-sm">Research Sources Cited</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
         const Footer = () => {
             return (
-                <footer className="bg-slate-50 border-t border-slate-200 pt-16 pb-8">
+                <footer className="bg-slate-900 text-white pt-16 pb-8">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="grid md:grid-cols-4 gap-8 mb-12">
                             <div className="col-span-1 md:col-span-2">
-                                <span className="text-xl font-bold text-slate-900">
-                                    HARMONI <span className="text-violet-600">Lab</span>
+                                <span className="text-xl font-bold text-white">
+                                    HARMONI <span className="text-violet-400">Lab</span>
                                 </span>
-                                <p className="mt-4 text-slate-500 max-w-sm text-sm">
+                                <p className="mt-4 text-slate-400 max-w-sm text-sm">
                                     An AI-driven project exploring the impact of hormonal changes on female brain and behavior.
                                 </p>
-                            </div>
-
-                            <div className="col-span-1 md:col-span-1">
-                                <h4 className="font-bold text-slate-900 mb-4">Contact</h4>
-                                <form action="https://formspree.io/f/xgoolwyl" method="POST" className="space-y-4">
-                                    <div>
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            placeholder="Your Name"
-                                            required
-                                            className="w-full px-4 py-2 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-sm transition-all"
-                                        />
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            placeholder="Your Email"
-                                            required
-                                            className="w-full px-4 py-2 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-sm transition-all"
-                                        />
-                                    </div>
-                                    <div>
-                                        <textarea
-                                            name="message"
-                                            placeholder="Your Message"
-                                            rows="3"
-                                            required
-                                            className="w-full px-4 py-2 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent text-sm transition-all resize-none"
-                                        ></textarea>
-                                    </div>
-                                    <button
-                                        type="submit"
-                                        className="w-full py-2 bg-violet-600 text-white font-semibold rounded-lg hover:bg-violet-700 transition-colors shadow-sm text-sm"
-                                    >
-                                        Send Message
-                                    </button>
-                                </form>
+                                <div className="flex gap-4 mt-6">
+                                    <a href="https://github.com/harmonilab" target="_blank" rel="noopener" className="w-10 h-10 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-violet-600 hover:text-white transition-colors">
+                                        <Github className="w-5 h-5" />
+                                    </a>
+                                    <a href="https://ga.linkedin.com/company/harmoni-lab" target="_blank" rel="noopener" className="w-10 h-10 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-violet-600 hover:text-white transition-colors">
+                                        <LinkedIn className="w-5 h-5" />
+                                    </a>
+                                </div>
                             </div>
 
                             <div>
-                                <h4 className="font-bold text-slate-900 mb-4">Links</h4>
-                                <ul className="space-y-3 text-sm text-slate-600">
-                                    <li><a href="index.html" className="hover:text-violet-600">Home</a></li>
-                                    <li><a href="lucia.html" className="hover:text-violet-600">LUCIA</a></li>
-                                    <li><a href="clara.html" className="hover:text-violet-600">CLARA</a></li>
-                                    <li><a href="selene.html" className="hover:text-violet-600">SELENE</a></li>
+                                <h4 className="font-bold text-white mb-4">Tools</h4>
+                                <ul className="space-y-2 text-sm text-slate-400">
+                                    <li><a href="selene.html" className="hover:text-violet-400 transition-colors">SELENE</a></li>
+                                    <li><a href="lucia.html" className="hover:text-violet-400 transition-colors">LUCIA</a></li>
+                                    <li><a href="clara.html" className="hover:text-violet-400 transition-colors">CLARA</a></li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h4 className="font-bold text-white mb-4">Links</h4>
+                                <ul className="space-y-2 text-sm text-slate-400">
+                                    <li><a href="index.html" className="hover:text-violet-400 transition-colors">Home</a></li>
+                                    <li><a href="index.html#mission" className="hover:text-violet-400 transition-colors">Mission</a></li>
+                                    <li><a href="index.html#research" className="hover:text-violet-400 transition-colors">Research</a></li>
+                                    <li><a href="index.html#contact" className="hover:text-violet-400 transition-colors">Contact</a></li>
                                 </ul>
                             </div>
                         </div>
 
-                        <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-400">
+                        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
                             <p>&copy; {new Date().getFullYear()} Inna Campo / HARMONI Lab. All rights reserved.</p>
+                            <p className="mt-2 md:mt-0">SELENE: Psychoeducational Support for Women's Health</p>
                         </div>
                     </div>
                 </footer>
@@ -294,6 +355,8 @@
                     <Navigation />
                     <Hero />
                     <Mission />
+                    <Features />
+                    <Impact />
                     <Footer />
                 </div>
             );
