@@ -100,7 +100,7 @@
                                 {navLinks.map((link) => (
                                     <a key={link.name} href={link.href} className={`text-sm font-medium hover:text-violet-600 transition-colors ${scrolled ? 'text-slate-700' : 'text-slate-800'}`}>{link.name}</a>
                                 ))}
-                                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
+                                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-violet-700 bg-violet-50 px-3 py-1 rounded-full border border-violet-100">
                                     <ShieldCheck className="w-3 h-3" />
                                     For Clinicians
                                 </span>
@@ -129,28 +129,37 @@
 
         const Hero = () => {
             return (
-                <div className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-emerald-50 to-white">
-                    <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-emerald-100 opacity-30 blur-3xl"></div>
+                <div className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gradient-to-b from-white to-slate-50">
+                    <svg className="absolute -top-16 -right-16 w-24 h-24 opacity-20 blur-3xl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="g1" x1="0" x2="1">
+                                <stop offset="0%" stopColor="#7c3aed" />
+                                <stop offset="100%" stopColor="#0ea5e9" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="100" cy="100" r="90" fill="url(#g1)" opacity="0.8"/>
+                        <circle cx="140" cy="70" r="50" fill="#7c3aed" opacity="0.3"/>
+                    </svg>
                     <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-amber-100 opacity-30 blur-3xl"></div>
 
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                         <div className="max-w-4xl mx-auto text-center">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-6">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider mb-6">
                                 <ShieldCheck className="w-3 h-3" />
                                 Bias-Aware Clinical AI
                             </div>
                             <h1 className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight mb-4">
-                                <span className="text-emerald-600">LUCIA</span>
+                                <span className="text-violet-600">LUCIA</span>
                             </h1>
                             <p className="text-xl text-slate-500 italic mb-2">"A bridge, not a wedge."</p>
                             <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto">
                                 Closing the gender diagnostic gap with Multi-Agent AI systems. LUCIA acts as a collaborative layer between patient narratives and clinical diagnosis.
                             </p>
                             <div className="flex flex-col sm:flex-row justify-center gap-4">
-                                <a href="#demo" className="px-6 py-3 bg-emerald-600 text-white font-semibold rounded-lg hover:bg-emerald-700 transition-colors shadow flex items-center justify-center gap-2">
+                                <a href="#demo" className="px-6 py-3 bg-violet-600 text-white font-semibold rounded-lg hover:brightness-105 transition-all shadow flex items-center justify-center gap-2">
                                     See Demo <ArrowRight className="w-4 h-4" />
                                 </a>
-                                <a href="index.html#initiatives" className="px-6 py-3 bg-white text-slate-700 font-semibold rounded-lg border border-slate-200 hover:border-emerald-300 hover:text-emerald-600 transition-all">
+                                <a href="index.html#initiatives" className="px-6 py-3 bg-white text-slate-700 font-semibold rounded-lg border border-slate-200 hover:border-violet-300 hover:text-violet-600 transition-all">
                                     Other Initiatives
                                 </a>
                             </div>
@@ -171,7 +180,7 @@
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="grid lg:grid-cols-2 gap-16 items-center">
                             <div>
-                                <h2 className="text-sm font-bold text-emerald-600 uppercase tracking-wide mb-2">The Diagnostic Gap</h2>
+                                <h2 className="text-sm font-bold text-violet-600 uppercase tracking-wide mb-2">The Diagnostic Gap</h2>
                                 <h3 className="text-3xl font-bold text-slate-900 mb-6">Why Women Wait Longer</h3>
                                 <p className="text-slate-600 mb-6 leading-relaxed">
                                     Women face on average a <strong className="text-slate-900">four-year diagnostic delay</strong> compared to men across hundreds of conditions. This "diagnostic shadowing" often occurs when physical symptoms are attributed to mental health issues.
@@ -189,7 +198,7 @@
                             <div className="space-y-6">
                                 {stats.map((stat, idx) => (
                                     <div key={idx} className="bg-slate-50 rounded-2xl p-8 border border-slate-100 flex items-center gap-6">
-                                        <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                                        <div className="w-16 h-16 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0">
                                             {stat.icon}
                                         </div>
                                         <div>
@@ -210,7 +219,7 @@
                 {
                     name: "Agent 1: The Scribe",
                     icon: <FileText className="w-6 h-6" />,
-                    color: "bg-emerald-600",
+                    color: "bg-violet-600",
                     description: "Extracts patient-reported sensations into a structured Review of Systems (ROS), mapping symptoms to physiological clusters with precision and empathy."
                 },
                 {
@@ -225,7 +234,7 @@
                 <div id="architecture" className="py-20 bg-slate-50">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-16">
-                            <h2 className="text-sm font-bold text-emerald-600 uppercase tracking-wide mb-2">Dual-Stream Architecture</h2>
+                            <h2 className="text-sm font-bold text-violet-600 uppercase tracking-wide mb-2">Dual-Stream Architecture</h2>
                             <h3 className="text-3xl font-bold text-slate-900 mb-4">Separating Listening from Auditing</h3>
                             <p className="text-slate-600 max-w-2xl mx-auto">
                                 LUCIA utilizes Multi-Agent Orchestration to separate the "listening" from the "auditing," preventing the AI from simply confirming existing biases.
@@ -253,7 +262,7 @@
                 <div id="demo" className="py-20 bg-white">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-12">
-                            <h2 className="text-sm font-bold text-emerald-600 uppercase tracking-wide mb-2">In Action</h2>
+                            <h2 className="text-sm font-bold text-violet-600 uppercase tracking-wide mb-2">In Action</h2>
                             <h3 className="text-3xl font-bold text-slate-900 mb-4">The "Dismissal" Scenario</h3>
                             <p className="text-slate-600">How LUCIA transforms a frustrating clinical encounter into a powerful advocacy asset.</p>
                         </div>
@@ -261,7 +270,7 @@
                         <div className="bg-slate-900 rounded-2xl p-8 text-white shadow-xl">
                             <div className="space-y-6">
                                 <div>
-                                    <p className="text-emerald-400 text-sm font-semibold uppercase tracking-wider mb-2">Patient Narrative</p>
+                                    <p className="text-violet-400 text-sm font-semibold uppercase tracking-wider mb-2">Patient Narrative</p>
                                     <div className="bg-slate-800 rounded-xl p-4 border-l-4 border-amber-400">
                                         <p className="text-slate-300 italic">
                                             "I've been waking up with stiff, swollen joints... He told me that at 48, this is just 'empty nest syndrome' and told me to try meditation to calm my nerves."
@@ -270,14 +279,14 @@
                                 </div>
 
                                 <div className="border-t border-slate-700 pt-6">
-                                    <p className="text-emerald-400 text-sm font-semibold uppercase tracking-wider mb-4">LUCIA Intelligence</p>
+                                    <p className="text-violet-400 text-sm font-semibold uppercase tracking-wider mb-4">LUCIA Intelligence</p>
                                     <div className="space-y-3">
                                         <div className="flex items-start gap-3">
-                                            <div className="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
+                                            <div className="w-8 h-8 rounded-full bg-violet-500/20 text-violet-400 flex items-center justify-center flex-shrink-0">
                                                 <AlertTriangle className="w-4 h-4" />
                                             </div>
                                             <div>
-                                                <p className="font-semibold text-emerald-400">Detected Pattern</p>
+                                                <p className="font-semibold text-violet-400">Detected Pattern</p>
                                                 <p className="text-slate-400 text-sm">Attribution of physical swelling to 'nerves'</p>
                                             </div>
                                         </div>
@@ -317,7 +326,7 @@
                 <div id="future" className="py-20 bg-slate-900 text-white">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-12">
-                            <h2 className="text-sm font-bold text-emerald-400 uppercase tracking-wide mb-2">The Horizon</h2>
+                            <h2 className="text-sm font-bold text-violet-400 uppercase tracking-wide mb-2">The Horizon</h2>
                             <h3 className="text-3xl font-bold">More than a Tool — A Movement</h3>
                             <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
                                 LUCIA is building towards longitudinal clinical equity, transforming how women's health narratives are heard and acted upon.
@@ -326,7 +335,7 @@
 
                         <div className="grid md:grid-cols-3 gap-6">
                             {roadmap.map((item, idx) => (
-                                <div key={idx} className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700 hover:border-emerald-500/30 transition-colors">
+                                <div key={idx} className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700 hover:border-violet-500/30 transition-colors">
                                     <h4 className="text-lg font-bold text-white mb-2">{item.title}</h4>
                                     <p className="text-slate-400 text-sm">{item.desc}</p>
                                 </div>
@@ -350,10 +359,10 @@
                                     An AI-driven project exploring the impact of hormonal changes on female brain and behavior.
                                 </p>
                                 <div className="flex gap-4 mt-6">
-                                    <a href="https://github.com/innacampo" target="_blank" rel="noopener" className="w-10 h-10 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-colors">
+                                    <a href="https://github.com/innacampo" target="_blank" rel="noopener" className="w-10 h-10 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-violet-600 hover:text-white transition-colors">
                                         <Github className="w-5 h-5" />
                                     </a>
-                                    <a href="https://ga.linkedin.com/company/harmoni-lab" target="_blank" rel="noopener" className="w-10 h-10 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-colors">
+                                    <a href="https://ga.linkedin.com/company/harmoni-lab" target="_blank" rel="noopener" className="w-10 h-10 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-violet-600 hover:text-white transition-colors">
                                         <LinkedIn className="w-5 h-5" />
                                     </a>
                                 </div>
@@ -362,25 +371,25 @@
                             <div>
                                 <h4 className="font-bold text-white mb-4">Tools</h4>
                                 <ul className="space-y-2 text-sm text-slate-400">
-                                    <li><a href="selene.html" className="hover:text-emerald-400 transition-colors">SELENE</a></li>
-                                    <li><a href="lucia.html" className="hover:text-emerald-400 transition-colors">LUCIA</a></li>
-                                    <li><a href="clara.html" className="hover:text-emerald-400 transition-colors">CLARA</a></li>
+                                    <li><a href="selene.html" className="hover:text-violet-400 transition-colors">SELENE</a></li>
+                                    <li><a href="lucia.html" className="hover:text-violet-400 transition-colors">LUCIA</a></li>
+                                    <li><a href="clara.html" className="hover:text-violet-400 transition-colors">CLARA</a></li>
                                 </ul>
                             </div>
 
                             <div>
                                 <h4 className="font-bold text-white mb-4">Links</h4>
                                 <ul className="space-y-2 text-sm text-slate-400">
-                                    <li><a href="index.html" className="hover:text-emerald-400 transition-colors">Home</a></li>
-                                    <li><a href="index.html#mission" className="hover:text-emerald-400 transition-colors">Mission</a></li>
-                                    <li><a href="index.html#research" className="hover:text-emerald-400 transition-colors">Research</a></li>
-                                    <li><a href="index.html#contact" className="hover:text-emerald-400 transition-colors">Contact</a></li>
+                                    <li><a href="index.html" className="hover:text-violet-400 transition-colors">Home</a></li>
+                                    <li><a href="index.html#mission" className="hover:text-violet-400 transition-colors">Mission</a></li>
+                                    <li><a href="index.html#research" className="hover:text-violet-400 transition-colors">Research</a></li>
+                                    <li><a href="index.html#contact" className="hover:text-violet-400 transition-colors">Contact</a></li>
                                 </ul>
                             </div>
                         </div>
 
                         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
-                            <p>&copy; {new Date().getFullYear()} Inna Campo / HARMONI Lab. All rights reserved.</p>
+                            <p>&copy; {new Date().getFullYear()} HARMONI Lab. All rights reserved.</p>
                             <p className="mt-2 md:mt-0">LUCIA: Bias-Aware AI Agent | Built with Google ADK & Gemini</p>
                         </div>
                     </div>
@@ -390,7 +399,7 @@
 
         const App = () => {
             return (
-                <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-emerald-100 selection:text-emerald-900">
+                <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-violet-100 selection:text-violet-900">
                     <Navigation />
                     <Hero />
                     <Problem />
